@@ -216,3 +216,12 @@
     (ok true)
   )
 )
+
+;; Emergency pause for all protocol operations
+(define-public (set-protocol-pause (paused bool))
+  (begin
+    (try! (check-owner))
+    (var-set protocol-paused paused)
+    (ok true)
+  )
+)
