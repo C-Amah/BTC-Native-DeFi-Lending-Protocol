@@ -566,3 +566,20 @@
   ;; Simplified: based on supplied assets + governance token balance
   u100000 ;; Placeholder implementation
 )
+
+(define-read-only (get-flash-loan-fee)
+  (var-get flash-loan-fee)
+)
+
+(define-read-only (get-user-pending-rewards (user principal))
+  (let 
+    (
+      (user-data (map-get? user-rewards { user: user }))
+    )
+    (match user-data
+      data (get pending-rewards data)
+      u0
+    )
+  )
+)
+
