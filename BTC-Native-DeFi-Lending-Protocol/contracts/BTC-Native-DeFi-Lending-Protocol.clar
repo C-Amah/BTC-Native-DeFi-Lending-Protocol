@@ -253,7 +253,24 @@
   )
 )
 
+(define-constant ERR_FLASH_LOAN_NOT_REPAID (err u200))
+(define-constant ERR_FLASH_LOAN_FEE_NOT_PAID (err u201))
+(define-constant ERR_FLASH_LOAN_AMOUNT_TOO_HIGH (err u202))
 
+(define-data-var flash-loan-fee uint u9) ;; 0.09% flash loan fee (9 basis points)
+(define-data-var max-flash-loan-ratio uint u800) ;; Max 80% of available liquidity
+
+;; Flash loan execution tracking
+(define-map active-flash-loans
+  { loan-id: uint }
+  {
+    borrower: principal,
+    asset: principal,
+    amount: uint,
+    fee: uint,
+    repaid: bool
+  }
+)
 
 
 
